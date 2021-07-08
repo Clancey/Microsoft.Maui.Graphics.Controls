@@ -1,17 +1,12 @@
 ﻿using System;
-using Microsoft.Maui.Controls;
+using Microsoft.Maui;
 
 namespace Microsoft.Maui.Graphics.Controls
 {
     public static class ColorExtensions
     {
-        public static Color WithDefault(this Color color, string defaultColor)
-        {
-            if (!color.IsDefault())
-                return color;
-            else
-                return Color.FromArgb(defaultColor);
-        }
+        public static Color WithDefault(this Color color, string defaultColor) => color ?? Color.FromArgb(defaultColor);
+        
 
         public static Color ToColor(this string hex)
         {

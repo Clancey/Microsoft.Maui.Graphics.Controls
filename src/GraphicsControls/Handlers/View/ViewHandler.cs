@@ -50,7 +50,7 @@
 			}
 		};
 
-		public static void MapInvalidate(IViewHandler handler, IView view) =>
+		public static void MapInvalidate(IElementHandler handler, IElement view) =>
 			(handler as IGraphicsHandler)?.Invalidate();
 	}
 }

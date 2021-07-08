@@ -44,12 +44,12 @@ namespace Microsoft.Maui.Graphics.Controls
             nativeView.ShouldChangeCharacters -= OnShouldChangeCharacters;
         }
 
-        protected override void SetupDefaults(GraphicsEntry nativeView)
-        {
-            DefaultTextColor = nativeView.TextColor;
+        //protected override void SetupDefaults(GraphicsEntry nativeView)
+        //{
+        //    DefaultTextColor = nativeView.TextColor;
 
-            base.SetupDefaults(nativeView);
-        }
+        //    base.SetupDefaults(nativeView);
+        //}
 
         public override bool StartInteraction(PointF[] points)
         {

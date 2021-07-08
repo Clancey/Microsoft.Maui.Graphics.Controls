@@ -4,7 +4,7 @@ namespace Microsoft.Maui.Graphics.Controls
 {
     public class SwitchHandler : GraphicsControlHandler<ISwitchDrawable, ISwitch>
     {
-		public static PropertyMapper<ISwitch> PropertyMapper = new PropertyMapper<ISwitch>(ViewHandler.Mapper)
+		public static PropertyMapper PropertyMapper = new PropertyMapper<IView>(ViewHandler.Mapper)
 		{
 			Actions =
 			{

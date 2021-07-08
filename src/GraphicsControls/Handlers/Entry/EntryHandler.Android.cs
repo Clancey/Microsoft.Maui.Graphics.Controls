@@ -34,12 +34,12 @@ namespace Microsoft.Maui.Graphics.Controls
 			base.DisconnectHandler(nativeView);
         }
 
-        protected override void SetupDefaults(GraphicsEntry nativeView)
-		{
-			DefaultTextColors = nativeView.TextColors;
+  //      protected override void SetupDefaults(GraphicsEntry nativeView)
+		//{
+		//	DefaultTextColors = nativeView.TextColors;
 
-			base.SetupDefaults(nativeView);
-		}
+		//	base.SetupDefaults(nativeView);
+		//}
 
 		public override bool StartInteraction(PointF[] points)
 		{

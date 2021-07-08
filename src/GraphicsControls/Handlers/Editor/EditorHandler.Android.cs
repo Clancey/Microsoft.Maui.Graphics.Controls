@@ -42,12 +42,12 @@ namespace Microsoft.Maui.Graphics.Controls
 			FocusChangeListener.Handler = null;
 		}
 
-		protected override void SetupDefaults(GraphicsEditor nativeView)
-        {
-			DefaultTextColors = nativeView.TextColors;
+		//protected override void SetupDefaults(GraphicsEditor nativeView)
+  //      {
+		//	DefaultTextColors = nativeView.TextColors;
 
-			base.SetupDefaults(nativeView);
-        }
+		//	base.SetupDefaults(nativeView);
+  //      }
 
         public static void MapText(EditorHandler handler, IEditor editor)
 		{
