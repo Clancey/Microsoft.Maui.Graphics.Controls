@@ -77,6 +77,7 @@ namespace Microsoft.Maui.Graphics.Controls
 		{
 			if (hasSetState)
 			{
+				hasSetState = true;
 				Drawable.AnimationPercent = VirtualView.IsOn ? 1 : 0;
 				Invalidate();
 			}
