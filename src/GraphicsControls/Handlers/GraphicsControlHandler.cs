@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Microsoft.Maui.Animations;
 
 namespace Microsoft.Maui.Graphics.Controls
 {
@@ -129,5 +130,9 @@ namespace Microsoft.Maui.Graphics.Controls
 		}
 
 		public abstract string[] LayerDrawingOrder();
+
+		IAnimationManager animationManager;
+		protected IAnimationManager AnimationManager => animationManager ??= (IAnimationManager)MauiContext.Services.GetService(typeof(IAnimationManager));
+
 	}
 }

@@ -1,4 +1,6 @@
-﻿namespace Microsoft.Maui.Graphics.Controls
+﻿using Microsoft.Maui.Animations;
+
+namespace Microsoft.Maui.Graphics.Controls
 {
     public class CupertinoSwitchDrawable : ViewDrawable<ISwitch>, ISwitchDrawable
     {
@@ -6,7 +8,9 @@
         const float CupertinoThumbOnPosition = 36f;
         const float CupertinoSwitchBackgroundWidth = 51;
 
-        public void DrawBackground(ICanvas canvas, RectangleF dirtyRect, ISwitch view)
+		public double AnimationPercent { get; set; }
+
+		public void DrawBackground(ICanvas canvas, RectangleF dirtyRect, ISwitch view)
         {
             canvas.SaveState();
 
@@ -39,7 +43,7 @@
 
             canvas.SetShadow(new SizeF(0, 1), 2, CanvasDefaults.DefaultShadowColor);
 
-            var cupertinoThumbPosition = view.IsOn ? CupertinoThumbOnPosition : CupertinoThumbOffPosition;
+            var cupertinoThumbPosition = CupertinoThumbOffPosition.Lerp(CupertinoThumbOnPosition, AnimationPercent);
 
             canvas.FillCircle(cupertinoThumbPosition, y, radius);
 

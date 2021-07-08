@@ -1,4 +1,6 @@
-﻿namespace Microsoft.Maui.Graphics.Controls
+﻿using Microsoft.Maui.Animations;
+
+namespace Microsoft.Maui.Graphics.Controls
 {
     public class FluentSwitchDrawable : ViewDrawable<ISwitch>, ISwitchDrawable
     {
@@ -6,21 +8,35 @@
         const float FluentThumbOnPosition = 30f;
         const float FluentSwitchBackgroundWidth = 40;
 
+		public double AnimationPercent { get; set; }
+
         public void DrawBackground(ICanvas canvas, RectangleF dirtyRect, ISwitch view)
         {
             canvas.SaveState();
 
+
+            Color onColor = view.TrackColor.WithDefault(Fluent.Color.Primary.ThemePrimary);
+            Color offColor = Fluent.Color.Primary.ThemePrimary.ToColor();
+            bool useBackground = false;
+            if (view.Background != null)
+            {
+                useBackground = true;
+                if (view.Background is SolidPaint sp)
+                {
+                    offColor = sp.Color;
+                    useBackground = false;
+                }
+                //If it's not a solid color, how do we do that?
+            }
+
+            var fillPaint = offColor.Lerp(onColor, AnimationPercent);
+
             if (view.IsEnabled)
             {
-                if (view.IsOn)
-                    canvas.FillColor = view.TrackColor.WithDefault(Fluent.Color.Primary.ThemePrimary);
+                if (useBackground)
+                    canvas.SetFillPaint(view.Background, dirtyRect);
                 else
-                {
-                    if (view.Background != null)
-                        canvas.SetFillPaint(view.Background, dirtyRect);
-                    else
-                        canvas.FillColor = Fluent.Color.Primary.ThemePrimary.ToColor();
-                }
+                    canvas.FillColor = fillPaint;
             }
             else
                 canvas.FillColor = Fluent.Color.Background.NeutralLighter.ToColor();
@@ -47,7 +63,7 @@
 
             var y = dirtyRect.Y + margin + radius;
 
-            var fluentThumbPosition = view.IsOn ? FluentThumbOnPosition : FluentThumbOffPosition;
+            var fluentThumbPosition = FluentThumbOffPosition.Lerp(FluentThumbOnPosition, AnimationPercent);
             canvas.FillCircle(fluentThumbPosition, y, radius);
 
             canvas.RestoreState();

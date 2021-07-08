@@ -1,14 +1,19 @@
 ﻿using System.Linq;
+using Microsoft.Maui.Animations;
+
 
 namespace Microsoft.Maui.Graphics.Controls
 {
 	public class SwitchHandler : GraphicsControlHandler<ISwitchDrawable, ISwitch>
 	{
-		public static PropertyMapper PropertyMapper = new PropertyMapper<IView>(ViewHandler.Mapper)
+		public static PropertyMapper<ISwitch, SwitchHandler> PropertyMapper = new PropertyMapper<ISwitch, SwitchHandler>(ViewHandler.Mapper)
 		{
 			Actions =
 			{
-				[nameof(ISwitch.IsOn)] = ViewHandler.MapInvalidate,
+				[nameof(ISwitch.IsOn)] = (h, v) =>
+				{
+					h.SetState();
+				},
 				[nameof(ISwitch.TrackColor)] = ViewHandler.MapInvalidate,
 				[nameof(ISwitch.ThumbColor)] = ViewHandler.MapInvalidate
 			}
@@ -49,10 +54,35 @@ namespace Microsoft.Maui.Graphics.Controls
 			if (VirtualView != null && VirtualView.IsEnabled)
 			{
 				VirtualView.IsOn = !VirtualView.IsOn;
-				Invalidate();
+				AnimateToggle();
 			}
 
 			return base.StartInteraction(points);
 		}
+
+		void AnimateToggle()
+		{
+			float start = VirtualView.IsOn ? 0 : 1;
+			float end = VirtualView.IsOn ? 1 : 0;
+			AnimationManager.Add(new Animation(callback: (p) =>
+			{
+				Drawable.AnimationPercent = start.Lerp(end, p);
+				Invalidate();
+			}));
+		}
+
+
+		bool hasSetState;
+		protected void SetState()
+		{
+			if (hasSetState)
+			{
+				Drawable.AnimationPercent = VirtualView.IsOn ? 1 : 0;
+				Invalidate();
+			}
+			else
+				AnimateToggle();
+		}
+
 	}
 }

@@ -4,5 +4,6 @@
     {
         void DrawBackground(ICanvas canvas, RectangleF dirtyRect, ISwitch view);
         void DrawThumb(ICanvas canvas, RectangleF dirtyRect, ISwitch view);
+        double AnimationPercent { get; set; }
     }
 }
