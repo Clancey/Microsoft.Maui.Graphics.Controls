@@ -2,8 +2,8 @@
 
 namespace Microsoft.Maui.Graphics.Controls
 {
-    public class SwitchHandler : GraphicsControlHandler<ISwitchDrawable, ISwitch>
-    {
+	public class SwitchHandler : GraphicsControlHandler<ISwitchDrawable, ISwitch>
+	{
 		public static PropertyMapper PropertyMapper = new PropertyMapper<IView>(ViewHandler.Mapper)
 		{
 			Actions =
@@ -44,7 +44,7 @@ namespace Microsoft.Maui.Graphics.Controls
 		public static void MapDrawThumb(ICanvas canvas, RectangleF dirtyRect, ISwitchDrawable drawable, ISwitch view)
 			=> drawable.DrawThumb(canvas, dirtyRect, view);
 
-        public override bool StartInteraction(PointF[] points)
+		public override bool StartInteraction(PointF[] points)
 		{
 			if (VirtualView != null && VirtualView.IsEnabled)
 			{
@@ -53,6 +53,6 @@ namespace Microsoft.Maui.Graphics.Controls
 			}
 
 			return base.StartInteraction(points);
-        }
-    }
+		}
+	}
 }
