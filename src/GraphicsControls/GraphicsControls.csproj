@@ -8,6 +8,7 @@
 		<Nullable>enable</Nullable>
     <SingleProject>true</SingleProject>
     <UseMauiCore>true</UseMauiCore>
+    <UseMauiEssentials >true</UseMauiEssentials >
     <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-ios'">iossimulator-x64</RuntimeIdentifier>
     <RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">maccatalyst-x64</RuntimeIdentifier>
     <InvariantGlobalization Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">true</InvariantGlobalization>

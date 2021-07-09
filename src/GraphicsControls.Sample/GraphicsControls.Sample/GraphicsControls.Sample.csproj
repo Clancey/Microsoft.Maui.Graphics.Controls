@@ -6,7 +6,7 @@
 		<OutputType>Exe</OutputType>
 		<SingleProject>true</SingleProject>
 		<RootNamespace>GraphicsControls.Sample</RootNamespace>
-
+    <UseMaui>true</UseMaui>
 		<!-- Display name -->
 		<ApplicationTitle>GraphicsControls.Sample</ApplicationTitle>
 
@@ -30,10 +30,6 @@
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui" Version="6.0.100-preview.5.794" />
 	</ItemGroup>
 
 	<PropertyGroup>
